@@ -9,7 +9,7 @@ function App() {
 
   const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-  const keys3 = ["delete", "z", "x", "c", "v", "b", "n", "m", "enter"];
+  const keys3 = ["solve", "z", "x", "c", "v", "b", "n", "m", "enter"];
 
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
@@ -72,7 +72,7 @@ function App() {
         </div>
         <div className="row">
           {keys3.map((k, index) => {
-            let styles = (k === "enter" || k === "delete") ? "key one-and-half" : "key";
+            let styles = (k === "enter" || k === "solve") ? "key one-and-half" : "key";
             return <button className={styles} id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
           })}
         </div>
