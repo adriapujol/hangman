@@ -11,9 +11,26 @@ function App() {
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const keys3 = ["delete", "z", "x", "c", "v", "b", "n", "m", "enter"];
 
+  useEffect(() => {
+    window.addEventListener("keypress", handleKeyPress);
+    return () => window.removeEventListener("keypress", handleKeyPress);
+  })
+
+
   const letters = word.split("");
 
   console.log(letters);
+
+  const handleKeyPress = (event) => {
+    event.preventDefault();
+    console.log(event.key)
+
+    // console.log(e);
+  }
+  const handleLetterClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.value)
+  }
 
 
   return (
@@ -43,20 +60,20 @@ function App() {
       <section className="keyboard">
         <div className="row">
           {keys1.map((k, index) => {
-            return <div className="key" id={k} key={index}>{k}</div>
+            return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
           })}
         </div>
         <div className="row">
           <div className="blank half"></div>
           {keys2.map((k, index) => {
-            return <div className="key" id={k} key={index}>{k}</div>
+            return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick}>{k}</button>
           })}
           <div className="blank half"></div>
         </div>
         <div className="row">
           {keys3.map((k, index) => {
             let styles = (k === "enter" || k === "delete") ? "key one-and-half" : "key";
-            return <div className={styles} id={k} key={index}>{k}</div>
+            return <button className={styles} id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
           })}
         </div>
 
