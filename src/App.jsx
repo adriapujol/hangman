@@ -11,6 +11,8 @@ function App() {
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
   const keys3 = ["solve", "z", "x", "c", "v", "b", "n", "m", "enter"];
 
+  const validInput = new RegExp('[aA-zZ]');
+
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
@@ -21,15 +23,16 @@ function App() {
 
   console.log(letters);
 
-  const handleKeyPress = (event) => {
-    event.preventDefault();
-    console.log(event.key)
-
-    // console.log(e);
+  const handleKeyPress = (e) => {
+    e.preventDefault();
+    let letterPressed = e.key;
+    if (letterPressed.match(validInput)) return console.log(e.key);
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
+    let letterPressed = e.target.value;
+    if (letterPressed.match(validInput)) return console.log(letterPressed);
+
   }
 
 
