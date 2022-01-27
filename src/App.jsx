@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
+import Keyboard from './components/Keyboard';
 
 
 function App() {
 
 
   const [word, setWord] = useState("juniper");
+  const [correctGuesses, setCorrectGuesses] = useState([]);
+  const [wrongGuesses, setWrongGuesses] = useState([]);
 
   const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -25,16 +28,23 @@ function App() {
 
   const handleKeyPress = (e) => {
     e.preventDefault();
-    let letterPressed = e.key;
-    if (letterPressed.match(validInput)) return console.log(e.key);
+    checkLetter(e.key);
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    let letterPressed = e.target.value;
-    if (letterPressed.match(validInput)) return console.log(letterPressed);
-
+    checkLetter(e.target.value);
   }
 
+  const checkLetter = (letter) => {
+    if (letter.match(validInput) && !correctGuesses.includes(letter) && !wrongGuesses.includes(letter)) {
+
+      if (letters.includes(letter)) {
+        setCorrectGuesses([...correctGuesses, letter]);
+      } else {
+        setWrongGuesses([...wrongGuesses, letter]);
+      }
+    };
+  }
 
   return (
     <div className="wrapper">
