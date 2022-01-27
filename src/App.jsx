@@ -6,6 +6,8 @@ import Keyboard from './components/Keyboard';
 function App() {
 
 
+  const [lives, setLives] = useState(8);
+  const [gameOver, setGameOver] = useState(false);
   const [word, setWord] = useState("juniper");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
@@ -19,7 +21,18 @@ function App() {
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  })
+  });
+
+  useEffect(() => {
+    if (!gameOver) {
+      checkWin(word, correctGuesses);
+      if (lives === 0) {
+        console.log("LOSE!")
+        setGameOver(true);
+      };
+    }
+    console.log("game checked");
+  }, [correctGuesses, gameOver]);
 
 
   const letters = word.split("");
@@ -35,13 +48,21 @@ function App() {
     checkLetter(e.target.value);
   }
 
-  const checkLetter = (letter) => {
-    if (letter.match(validInput) && !correctGuesses.includes(letter) && !wrongGuesses.includes(letter)) {
+  const checkWin = (word, rightGuesses) => {
+    if (word.length === rightGuesses.length) {
+      console.log("YOU WIN");
+    }
+  }
 
-      if (letters.includes(letter)) {
-        setCorrectGuesses([...correctGuesses, letter]);
+  const checkLetter = (letter) => {
+    let letterFormated = letter.toLowerCase();
+    if (letterFormated.match(validInput) && !correctGuesses.includes(letterFormated) && !wrongGuesses.includes(letterFormated)) {
+
+      if (letters.includes(letterFormated)) {
+        setCorrectGuesses(currentGuesses => [...currentGuesses, letterFormated]);
       } else {
-        setWrongGuesses([...wrongGuesses, letter]);
+        setWrongGuesses([...wrongGuesses, letterFormated]);
+        setLives(currentLives => currentLives - 1);
       }
     };
   }
