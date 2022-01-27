@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
+import Keyboard from './components/Keyboard';
 
 
 function App() {
 
 
+  const [lives, setLives] = useState(8);
+  const [gameOver, setGameOver] = useState(false);
   const [word, setWord] = useState("juniper");
+  const [correctGuesses, setCorrectGuesses] = useState([]);
+  const [wrongGuesses, setWrongGuesses] = useState([]);
 
   const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -16,7 +21,18 @@ function App() {
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  })
+  });
+
+  useEffect(() => {
+    if (!gameOver) {
+      checkWin(word, correctGuesses);
+      if (lives === 0) {
+        console.log("LOSE!")
+        setGameOver(true);
+      };
+    }
+    console.log("game checked");
+  }, [correctGuesses, gameOver]);
 
 
   const letters = word.split("");
@@ -25,16 +41,31 @@ function App() {
 
   const handleKeyPress = (e) => {
     e.preventDefault();
-    let letterPressed = e.key;
-    if (letterPressed.match(validInput)) return console.log(e.key);
+    checkLetter(e.key);
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    let letterPressed = e.target.value;
-    if (letterPressed.match(validInput)) return console.log(letterPressed);
-
+    checkLetter(e.target.value);
   }
 
+  const checkWin = (word, rightGuesses) => {
+    if (word.length === rightGuesses.length) {
+      console.log("YOU WIN");
+    }
+  }
+
+  const checkLetter = (letter) => {
+    let letterFormated = letter.toLowerCase();
+    if (letterFormated.match(validInput) && !correctGuesses.includes(letterFormated) && !wrongGuesses.includes(letterFormated)) {
+
+      if (letters.includes(letterFormated)) {
+        setCorrectGuesses(currentGuesses => [...currentGuesses, letterFormated]);
+      } else {
+        setWrongGuesses([...wrongGuesses, letterFormated]);
+        setLives(currentLives => currentLives - 1);
+      }
+    };
+  }
 
   return (
     <div className="wrapper">
