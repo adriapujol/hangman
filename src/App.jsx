@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  }, []);
+  }, [correctGuesses, wrongGuesses]);
 
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
@@ -48,20 +48,12 @@ function App() {
 
   const handleKeyPress = (e) => {
     e.preventDefault();
-    console.log(typeof (e.key));
-    let lF = e.key.toLowerCase();
-
-    if (!correctGuesses.includes(lF) && !wrongGuesses.includes(lF)) {
-      if (!gameOver) checkLetter(lF);
-    }
+    if (!gameOver) checkLetter(e.key);
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    console.log(typeof (e.target.value));
-    let lF = e.target.value.toLowerCase();
-    if (!correctGuesses.includes(lF) && !wrongGuesses.includes(lF)) {
-      if (!gameOver) checkLetter(lF);
-    }
+    if (!gameOver) checkLetter(e.target.value);
+
   }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
@@ -83,7 +75,7 @@ function App() {
     if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
 
       if (uniqueLetters.includes(letterFormated)) {
-        setCorrectGuesses(currentGuesses => [...currentGuesses, letterFormated]);
+        setCorrectGuesses(currentWrongGuesses => [...currentWrongGuesses, letterFormated]);
       } else {
         setWrongGuesses(currentGuesses => [...currentGuesses, letterFormated]);
         setLives(currentLives => currentLives - 1);
