@@ -29,7 +29,7 @@ function App() {
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  }, []);
+  }, [correctGuesses, wrongGuesses]);
 
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
@@ -46,16 +46,14 @@ function App() {
   }, [gameOver])
 
 
-
-
   const handleKeyPress = (e) => {
     e.preventDefault();
     if (!gameOver) checkLetter(e.key);
-
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
     if (!gameOver) checkLetter(e.target.value);
+
   }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
@@ -67,13 +65,19 @@ function App() {
 
   const checkLetter = (letter) => {
     let letterFormated = letter.toLowerCase();
+    // console.log("Paraula: ", uniqueLetters);
+    // console.log("Lletra Input: ", letterFormated);
+    // console.log("Llista encerts: ", correctGuesses);
+    // console.log("Llista fallos: ", wrongGuesses);
+    // console.log("Lletra a encerts: ", correctGuesses.includes(letterFormated));
+    // console.log("Lletra a fallos: ", wrongGuesses.includes(letterFormated));
 
-    if (letterFormated.match(validInput) && !correctGuesses.includes(letterFormated) && !wrongGuesses.includes(letterFormated)) {
+    if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
 
-      if (letters.includes(letterFormated)) {
-        setCorrectGuesses(currentGuesses => [...currentGuesses, letterFormated]);
+      if (uniqueLetters.includes(letterFormated)) {
+        setCorrectGuesses(currentWrongGuesses => [...currentWrongGuesses, letterFormated]);
       } else {
-        setWrongGuesses([...wrongGuesses, letterFormated]);
+        setWrongGuesses(currentGuesses => [...currentGuesses, letterFormated]);
         setLives(currentLives => currentLives - 1);
       }
     };
