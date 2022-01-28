@@ -46,16 +46,22 @@ function App() {
   }, [gameOver])
 
 
-
-
   const handleKeyPress = (e) => {
     e.preventDefault();
-    if (!gameOver) checkLetter(e.key);
+    console.log(typeof (e.key));
+    let lF = e.key.toLowerCase();
 
+    if (!correctGuesses.includes(lF) && !wrongGuesses.includes(lF)) {
+      if (!gameOver) checkLetter(lF);
+    }
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    if (!gameOver) checkLetter(e.target.value);
+    console.log(typeof (e.target.value));
+    let lF = e.target.value.toLowerCase();
+    if (!correctGuesses.includes(lF) && !wrongGuesses.includes(lF)) {
+      if (!gameOver) checkLetter(lF);
+    }
   }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
@@ -67,13 +73,19 @@ function App() {
 
   const checkLetter = (letter) => {
     let letterFormated = letter.toLowerCase();
+    // console.log("Paraula: ", uniqueLetters);
+    // console.log("Lletra Input: ", letterFormated);
+    // console.log("Llista encerts: ", correctGuesses);
+    // console.log("Llista fallos: ", wrongGuesses);
+    // console.log("Lletra a encerts: ", correctGuesses.includes(letterFormated));
+    // console.log("Lletra a fallos: ", wrongGuesses.includes(letterFormated));
 
-    if (letterFormated.match(validInput) && !correctGuesses.includes(letterFormated) && !wrongGuesses.includes(letterFormated)) {
+    if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
 
-      if (letters.includes(letterFormated)) {
+      if (uniqueLetters.includes(letterFormated)) {
         setCorrectGuesses(currentGuesses => [...currentGuesses, letterFormated]);
       } else {
-        setWrongGuesses([...wrongGuesses, letterFormated]);
+        setWrongGuesses(currentGuesses => [...currentGuesses, letterFormated]);
         setLives(currentLives => currentLives - 1);
       }
     };
