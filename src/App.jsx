@@ -6,9 +6,10 @@ import Keyboard from './components/Keyboard';
 function App() {
 
 
-  const [lives, setLives] = useState(8);
+  const [lives, setLives] = useState(10);
+  const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("pana");
+  const [word, setWord] = useState("reto");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
 
@@ -31,31 +32,36 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!gameOver) {
-      checkWin(uniqueLetters, correctGuesses);
-      if (lives === 0) {
-        console.log("LOSE!")
-        setGameOver(true);
-      };
+    if (lives < 1) return setGameOver(true);
+  }, [lives]);
+
+  useEffect(() => {
+    checkWin(uniqueLetters, correctGuesses);
+  }, [correctGuesses]);
+
+  useEffect(() => {
+    if (gameOver) {
+      playerWin ? alert("YOU WON") : alert("YOU LOST!");
     }
-    console.log("game checked");
-  }, [correctGuesses, gameOver]);
+  }, [gameOver])
 
 
 
 
   const handleKeyPress = (e) => {
     e.preventDefault();
-    checkLetter(e.key);
+    if (!gameOver) checkLetter(e.key);
+
   }
   const handleLetterClick = (e) => {
     e.preventDefault();
-    checkLetter(e.target.value);
+    if (!gameOver) checkLetter(e.target.value);
   }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
     if (uniqueLetters.length === rightGuesses.length) {
-      console.log("YOU WIN");
+      setPlayerWin(true);
+      setGameOver(true);
     }
   }
 
@@ -100,7 +106,16 @@ function App() {
 
           </div>
           <div className="hangman">
-
+            <div className={lives < 10 ? "structure st1" : "structure st1 hide"}></div>
+            <div className={lives < 9 ? "structure st2" : "structure st2 hide"}></div>
+            <div className={lives < 8 ? "structure st3" : "structure st3 hide"}></div>
+            <div className={lives < 7 ? "rope" : "rope hide"}></div>
+            <div className={lives < 6 ? "man head" : "man head hide"}></div>
+            <div className={lives < 5 ? "man body" : "man body hide"}></div>
+            <div className={lives < 4 ? "man limbs arm1" : "man limbs arm1 hide"}></div>
+            <div className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"}></div>
+            <div className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"}></div>
+            <div className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"}></div>
           </div>
         </div>
       </section>
