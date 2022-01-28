@@ -8,9 +8,10 @@ function App() {
 
   const [lives, setLives] = useState(8);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("juniper");
+  const [word, setWord] = useState("pana");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
+
 
   const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
   const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -18,14 +19,20 @@ function App() {
 
   const validInput = new RegExp('[aA-zZ]');
 
+
+
+  const letters = word.split("");
+  const uniqueLetters = [...new Set(letters)];
+
+
   useEffect(() => {
     window.addEventListener("keypress", handleKeyPress);
     return () => window.removeEventListener("keypress", handleKeyPress);
-  });
+  }, []);
 
   useEffect(() => {
     if (!gameOver) {
-      checkWin(word, correctGuesses);
+      checkWin(uniqueLetters, correctGuesses);
       if (lives === 0) {
         console.log("LOSE!")
         setGameOver(true);
@@ -35,9 +42,7 @@ function App() {
   }, [correctGuesses, gameOver]);
 
 
-  const letters = word.split("");
 
-  console.log(letters);
 
   const handleKeyPress = (e) => {
     e.preventDefault();
@@ -48,14 +53,15 @@ function App() {
     checkLetter(e.target.value);
   }
 
-  const checkWin = (word, rightGuesses) => {
-    if (word.length === rightGuesses.length) {
+  const checkWin = (uniqueLetters, rightGuesses) => {
+    if (uniqueLetters.length === rightGuesses.length) {
       console.log("YOU WIN");
     }
   }
 
   const checkLetter = (letter) => {
     let letterFormated = letter.toLowerCase();
+
     if (letterFormated.match(validInput) && !correctGuesses.includes(letterFormated) && !wrongGuesses.includes(letterFormated)) {
 
       if (letters.includes(letterFormated)) {
@@ -70,15 +76,22 @@ function App() {
   return (
     <div className="wrapper">
       <nav className='nav'>
-        <div className="logo">H</div>
-        <div className="title">Hangman</div>
-        <button className="info">?</button>
+        <div className="nav-content">
+          <div className="logo">H</div>
+          <div className="title">Hangman</div>
+          <button className="info">?</button>
+        </div>
       </nav>
       <section className="game">
         <div className="word">
           {
             letters.map((letter, index) => {
-              return <div className={`letter l${index}`} key={index}>{letter}</div>
+              const toShow = correctGuesses.includes(letter);
+              return (
+                <div className="letter-box" key={index}>
+                  <div className={toShow ? "show" : "hide"} >{letter}</div>
+                </div>
+              )
             })
           }
         </div>

@@ -1,24 +1,72 @@
 .wrapper {
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .nav {
     width: 100%;
-    height: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    background-color: grey;
-    padding: 0px 20px;
+
+    .nav-content {
+        width: 70%;
+        height: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: grey;
+        padding: 0px 20px;
+    }
 }
 
 .game {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    margin: 10px 0px;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: cadetblue;
+
+    .word {
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
+        width: 100%;
+        max-width: 600px;
+
+        .letter-box {
+            background-color: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            margin-right: 5px;
+            border-bottom: 2px solid black;
+
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
+        }
+        
+    }
 }
 
 .keyboard {
     max-width: 400px;
+    width: 90%;
     display: block;
 
     .row {
