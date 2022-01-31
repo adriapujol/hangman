@@ -14,10 +14,6 @@ function App() {
   const [wrongGuesses, setWrongGuesses] = useState([]);
 
 
-  const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
-  const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-  const keys3 = ["solve", "z", "x", "c", "v", "b", "n", "m", "enter"];
-
   const validInput = new RegExp('[aA-zZ]');
 
 
@@ -123,7 +119,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="keyboard">
+      {/* <section className="keyboard">
         <div className="row">
           {keys1.map((k, index) => {
             return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
@@ -143,7 +139,8 @@ function App() {
           })}
         </div>
 
-      </section>
+      </section> */}
+      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
     </div>
   );
 }
