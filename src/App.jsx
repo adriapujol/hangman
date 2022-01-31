@@ -22,10 +22,10 @@ function App() {
   const uniqueLetters = [...new Set(letters)];
 
 
-  useEffect(() => {
-    window.addEventListener("keypress", handleKeyPress);
-    return () => window.removeEventListener("keypress", handleKeyPress);
-  }, [correctGuesses, wrongGuesses]);
+  // useEffect(() => {
+  //   window.addEventListener("keypress", handleKeyPress);
+  //   return () => window.removeEventListener("keypress", handleKeyPress);
+  // }, [correctGuesses, wrongGuesses]);
 
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
@@ -67,12 +67,13 @@ function App() {
     // console.log("Llista fallos: ", wrongGuesses);
     // console.log("Lletra a encerts: ", correctGuesses.includes(letterFormated));
     // console.log("Lletra a fallos: ", wrongGuesses.includes(letterFormated));
+    if (gameOver) return;
 
     if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
 
       if (uniqueLetters.includes(letterFormated)) {
         setCorrectGuesses(currentWrongGuesses => [...currentWrongGuesses, letterFormated]);
-      } else {
+      } else if (!(letterFormated === "solve" || letterFormated === "enter")) {
         setWrongGuesses(currentGuesses => [...currentGuesses, letterFormated]);
         setLives(currentLives => currentLives - 1);
       }

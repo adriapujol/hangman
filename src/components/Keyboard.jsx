@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Key from './Key';
 
+
+
 function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
+
+    useEffect(() => {
+        document.addEventListener("keypress", handlePress);
+        return () => document.removeEventListener("keypress", handlePress);
+    }, [correctGuesses, wrongGuesses]);
+
+    const handlePress = (e) => {
+        e.preventDefault();
+        checkLetter(e.key);
+    }
 
     const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
     const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
@@ -13,14 +25,14 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
         <section className="keyboard">
             <div className="row">
                 {keys1.map((k, index) => {
-                    let classStyle = guesses.includes(k) ? "key clicked" : "key";
+                    let classStyle = guesses.includes(k) ? "key used" : "key";
                     return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
                 })}
             </div>
             <div className="row">
                 <div className="blank half"></div>
                 {keys2.map((k, index) => {
-                    let classStyle = guesses.includes(k) ? "key clicked" : "key";
+                    let classStyle = guesses.includes(k) ? "key used" : "key";
                     return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
                 })}
                 <div className="blank half"></div>
@@ -28,12 +40,12 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
             <div className="row">
                 {keys3.map((k, index) => {
                     let classStyle = "key";
+                    if (guesses.includes(k)) {
+                        classStyle = classStyle + " used";
+                    };
                     if (k === "enter" || k === "solve") {
                         classStyle = classStyle + " one-and-half";
                     }
-                    if (guesses.includes(k)) {
-                        classStyle = classStyle + " clicked";
-                    };
                     return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
                 })}
             </div>

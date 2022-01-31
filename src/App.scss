@@ -215,8 +215,11 @@
         font-size: 0.8rem;
     }
 
+    .used {
+        background-color: $used;
+    }
+
     .clicked {
-        background-color: $clicked;
         animation-name: letterClick;
         animation-duration: 200ms;
     }

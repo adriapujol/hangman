@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Key({ letter, checkLetter, classStyle }) {
 
     const [clicked, setClicked] = useState(false);
 
-    const styles = (letter === "enter" || letter === "solve") ? "key one-and-half wrong" : "key";
-
     const handleClick = (e) => {
         e.preventDefault();
-        checkLetter(e.target.value)
         setClicked(true);
+        console.log(e.target);
+        checkLetter(e.target.value);
+        setTimeout(() => setClicked(false), 200);
     }
 
     return (
         <button
-            className={classStyle}
+            className={clicked ? classStyle + " clicked" : classStyle}
             id={letter}
             value={letter}
-            onClick={handleClick} >
+            onClick={handleClick}
+        >
             {letter}
         </button>
     )
