@@ -9,14 +9,10 @@ function App() {
   const [lives, setLives] = useState(10);
   const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("reto");
+  const [word, setWord] = useState("caramelo");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
 
-
-  const keys1 = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
-  const keys2 = ["a", "s", "d", "f", "g", "h", "j", "k", "l"];
-  const keys3 = ["solve", "z", "x", "c", "v", "b", "n", "m", "enter"];
 
   const validInput = new RegExp('[aA-zZ]');
 
@@ -26,10 +22,10 @@ function App() {
   const uniqueLetters = [...new Set(letters)];
 
 
-  useEffect(() => {
-    window.addEventListener("keypress", handleKeyPress);
-    return () => window.removeEventListener("keypress", handleKeyPress);
-  }, [correctGuesses, wrongGuesses]);
+  // useEffect(() => {
+  //   window.addEventListener("keypress", handleKeyPress);
+  //   return () => window.removeEventListener("keypress", handleKeyPress);
+  // }, [correctGuesses, wrongGuesses]);
 
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
@@ -71,12 +67,13 @@ function App() {
     // console.log("Llista fallos: ", wrongGuesses);
     // console.log("Lletra a encerts: ", correctGuesses.includes(letterFormated));
     // console.log("Lletra a fallos: ", wrongGuesses.includes(letterFormated));
+    if (gameOver) return;
 
     if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
 
       if (uniqueLetters.includes(letterFormated)) {
         setCorrectGuesses(currentWrongGuesses => [...currentWrongGuesses, letterFormated]);
-      } else {
+      } else if (!(letterFormated === "solve" || letterFormated === "enter")) {
         setWrongGuesses(currentGuesses => [...currentGuesses, letterFormated]);
         setLives(currentLives => currentLives - 1);
       }
@@ -123,7 +120,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="keyboard">
+      {/* <section className="keyboard">
         <div className="row">
           {keys1.map((k, index) => {
             return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
@@ -138,12 +135,13 @@ function App() {
         </div>
         <div className="row">
           {keys3.map((k, index) => {
-            let styles = (k === "enter" || k === "solve") ? "key one-and-half" : "key";
+            let styles = (k === "enter" || k === "solve") ? "key one-and-half wrong" : "key";
             return <button className={styles} id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
           })}
         </div>
 
-      </section>
+      </section> */}
+      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
     </div>
   );
 }
