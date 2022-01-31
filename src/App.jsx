@@ -9,7 +9,7 @@ function App() {
   const [lives, setLives] = useState(10);
   const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("reto");
+  const [word, setWord] = useState("caramelo");
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
 
@@ -138,7 +138,7 @@ function App() {
         </div>
         <div className="row">
           {keys3.map((k, index) => {
-            let styles = (k === "enter" || k === "solve") ? "key one-and-half" : "key";
+            let styles = (k === "enter" || k === "solve") ? "key one-and-half wrong" : "key";
             return <button className={styles} id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
           })}
         </div>
