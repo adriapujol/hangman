@@ -7,7 +7,6 @@ function Key({ letter, checkLetter, classStyle }) {
     const handleClick = (e) => {
         e.preventDefault();
         setClicked(true);
-        console.log(e.target);
         checkLetter(e.target.value);
         setTimeout(() => setClicked(false), 200);
     }
