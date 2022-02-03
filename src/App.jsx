@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import Keyboard from './components/Keyboard';
+import head from './img/head.png';
+import body from './img/body.png';
+import armLeft from './img/armLeft.png';
+import armRight from './img/armRight.png';
+import legRight from './img/legRight.png';
+import legLeft from './img/legLeft.png';
+import rope from './img/rope.png';
+import woodS from './img/woodS.png';
+import woodM from './img/woodM.png';
+import woodL from './img/woodL.png';
+import background from './img/background.jpg';
 
 
 function App() {
@@ -61,12 +72,6 @@ function App() {
 
   const checkLetter = (letter) => {
     let letterFormated = letter.toLowerCase();
-    // console.log("Paraula: ", uniqueLetters);
-    // console.log("Lletra Input: ", letterFormated);
-    // console.log("Llista encerts: ", correctGuesses);
-    // console.log("Llista fallos: ", wrongGuesses);
-    // console.log("Lletra a encerts: ", correctGuesses.includes(letterFormated));
-    // console.log("Lletra a fallos: ", wrongGuesses.includes(letterFormated));
     if (gameOver) return;
 
     if (letterFormated.match(validInput) && (!correctGuesses.includes(letterFormated)) && (!wrongGuesses.includes(letterFormated))) {
@@ -90,6 +95,19 @@ function App() {
         </div>
       </nav>
       <section className="game">
+
+        <img src={background} alt="Background" />
+        <img src={woodL} alt="Structure" className={lives < 10 ? "structure st1" : "structure st1 hide"} />
+        <img src={woodM} alt="Structure" className={lives < 9 ? "structure st2" : "structure st2 hide"} />
+        <img src={woodS} alt="Structure" className={lives < 8 ? "structure st3" : "structure st3 hide"} />
+        <img src={body} alt="Body" className={lives < 5 ? "man body" : "man body hide"} />
+        <img src={rope} alt="Rope" className={lives < 7 ? "rope" : "rope hide"} />
+        <img src={head} alt="Head" className={lives < 6 ? "man head" : "man head hide"} />
+        <img src={armLeft} alt="Left arm" className={lives < 4 ? "man limbs arm1" : "man limbs arm1 hide"} />
+        <img src={armRight} alt="Right arm" className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"} />
+        <img src={legLeft} alt="Left leg" className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"} />
+        <img src={legRight} alt="Right leg" className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"} />
+
         <div className="word">
           {
             letters.map((letter, index) => {
@@ -102,45 +120,30 @@ function App() {
             })
           }
         </div>
-        <div className="board">
-          <div className="background">
-
-          </div>
-          <div className="hangman">
-            <div className={lives < 10 ? "structure st1" : "structure st1 hide"}></div>
-            <div className={lives < 9 ? "structure st2" : "structure st2 hide"}></div>
-            <div className={lives < 8 ? "structure st3" : "structure st3 hide"}></div>
-            <div className={lives < 7 ? "rope" : "rope hide"}></div>
-            <div className={lives < 6 ? "man head" : "man head hide"}></div>
-            <div className={lives < 5 ? "man body" : "man body hide"}></div>
-            <div className={lives < 4 ? "man limbs arm1" : "man limbs arm1 hide"}></div>
-            <div className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"}></div>
-            <div className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"}></div>
-            <div className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"}></div>
-          </div>
+        <div className="hangman">
+          {/* <img src={background} alt="Background" />
+          <img src={woodL} alt="Structure" />
+          <img src={woodM} alt="Structure" />
+          <img src={woodS} alt="Structure" />
+          <img src={rope} alt="Rope" />
+          <img src={head} alt="Head" />
+          <img src={body} alt="Body" />
+          <img src={armLeft} alt="Left arm" />
+          <img src={armRight} alt="Right arm" />
+          <img src={legLeft} alt="Left leg" />
+          <img src={legRight} alt="Right leg" /> */}
+          {/* <div className={lives < 10 ? "structure st1" : "structure st1 hide"}></div>
+          <div className={lives < 9 ? "structure st2" : "structure st2 hide"}></div>
+          <div className={lives < 8 ? "structure st3" : "structure st3 hide"}></div>
+          <div className={lives < 7 ? "rope" : "rope hide"}></div>
+          <div className={lives < 6 ? "man head" : "man head hide"}></div>
+          <div className={lives < 5 ? "man body" : "man body hide"}></div>
+          <div className={lives < 4 ? "man limbs arm1" : "man limbs arm1 hide"}></div>
+          <div className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"}></div>
+          <div className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"}></div>
+          <div className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"}></div> */}
         </div>
       </section>
-      {/* <section className="keyboard">
-        <div className="row">
-          {keys1.map((k, index) => {
-            return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
-          })}
-        </div>
-        <div className="row">
-          <div className="blank half"></div>
-          {keys2.map((k, index) => {
-            return <button className="key" id={k} key={index} value={k} onClick={handleLetterClick}>{k}</button>
-          })}
-          <div className="blank half"></div>
-        </div>
-        <div className="row">
-          {keys3.map((k, index) => {
-            let styles = (k === "enter" || k === "solve") ? "key one-and-half wrong" : "key";
-            return <button className={styles} id={k} key={index} value={k} onClick={handleLetterClick} >{k}</button>
-          })}
-        </div>
-
-      </section> */}
       <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
     </div>
   );

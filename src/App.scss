@@ -6,13 +6,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+
+    // background-image: url('./img/background.jpg');
+    // background-repeat: no-repeat;
+    // background-position: center center;
+    // background-attachment: fixed;
+    // background-size: 100% auto;
 }
 
 .nav {
+    position: fixed;
+    top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 
     .nav-content {
         width: 70%;
@@ -27,15 +37,27 @@
 
 .game {
     width: 100%;
-    max-width: 900px;
-    height: 500px;
-    margin: 10px 0px;
+    // max-width: 900px;
+    height: 100vh;
+    // margin: 10px 0px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    // position: relative;
 
-    background-color: cadetblue;
+        img {
+            position: absolute;
+            top: 0;
+            // left: 0;
+            width: auto;
+            height: 100%;
+        }
+
+    
+
+
+    // background-color: cadetblue;
 
     .word {
         display: flex;
@@ -44,6 +66,7 @@
         width: 100%;
         max-width: 600px;
         margin: 20px 0px;
+        z-index: 99;
 
         .letter-box {
             background-color: grey;
@@ -62,115 +85,108 @@
         
     }
 
-    .board {
-        height: 400px;
-        width: 300px;
-        position: relative;
-
-        .background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: #cccccc;
-        }
 
         .hangman {
             position: relative;
             width: 100%;
             height: 100%;
-            background-color: rgb(221, 202, 202);
+            // background-color: rgb(221, 202, 202);
 
-            * {
+            img {
                 position: absolute;
+                top: 0;
+                left: 0;
+                width: auto;
+                height: 100%;
             }
 
-            .structure {
-                background-color: rgb(119, 64, 39);
-            }
-            .st1 {
-                height: 350px;
-                width: 40px;
-                bottom: 0px;
-            }
+            // .structure {
+            //     background-color: rgb(119, 64, 39);
+            // }
+            // .st1 {
+            //     height: 350px;
+            //     width: 40px;
+            //     bottom: 0px;
+            // }
 
-            .st2 {
-                height: 40px;
-                width: 200px;
-                top: 50px;
-            }
+            // .st2 {
+            //     height: 40px;
+            //     width: 200px;
+            //     top: 50px;
+            // }
 
-            .st3 {
-                height: 20px;
-                width: 100px;
-                transform: rotate(-45deg);
-                top: 100px;
-                left: 10px;
-            }
+            // .st3 {
+            //     height: 20px;
+            //     width: 100px;
+            //     transform: rotate(-45deg);
+            //     top: 100px;
+            //     left: 10px;
+            // }
 
-            .rope {
-                height: 100px;
-                width: 10px;
-                background-color: rgb(144, 110, 55);
-                top: 50px;
-                left: 145px;
-            }
+            // .rope {
+            //     height: 100px;
+            //     width: 10px;
+            //     background-color: rgb(144, 110, 55);
+            //     top: 50px;
+            //     left: 145px;
+            // }
 
-            .man {
-                background-color: rgb(98, 98, 98);
-            }
+            // .man {
+            //     background-color: rgb(98, 98, 98);
+            // }
 
-            .head {
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-                left: 150px;
-                top: 120px;
-                transform: translateX(-50%);
-            }
+            // .head {
+            //     height: 50px;
+            //     width: 50px;
+            //     border-radius: 50%;
+            //     left: 150px;
+            //     top: 120px;
+            //     transform: translateX(-50%);
+            // }
 
-            .body {
-                height: 80px;
-                width: 50px;
-                border-radius: 5px;
-                left: 150px;
-                top: 170px;
-                transform: translateX(-50%);
-            }
+            // .body {
+            //     height: 80px;
+            //     width: 50px;
+            //     border-radius: 5px;
+            //     left: 150px;
+            //     top: 170px;
+            //     transform: translateX(-50%);
+            // }
 
-            .limbs {
-                height: 70px;
-                width: 15px;
-                border-radius: 5px;
+            // .limbs {
+            //     height: 70px;
+            //     width: 15px;
+            //     border-radius: 5px;
                 
-            }
-            .arm1, .arm2 {
-                top: 170px;
-            }
-            .arm1 {
-                left: 110px;
-                transform: rotate(25deg);
+            // }
+            // .arm1, .arm2 {
+            //     top: 170px;
+            // }
+            // .arm1 {
+            //     left: 110px;
+            //     transform: rotate(25deg);
                 
-            }
-            .arm2 {
-                left: 175px;
-                transform: rotate(-25deg);
-            }
+            // }
+            // .arm2 {
+            //     left: 175px;
+            //     transform: rotate(-25deg);
+            // }
 
-            .leg1,.leg2 {
-                height: 80px;
-                top: 240px;
-            }
-            .leg1 {
-                left: 125px;
-            }
-            .leg2 {
-                left: 160px;
-            }
+            // .leg1,.leg2 {
+            //     height: 80px;
+            //     top: 240px;
+            // }
+            // .leg1 {
+            //     left: 125px;
+            // }
+            // .leg2 {
+            //     left: 160px;
+            // }
 
 
 
         }
-    }
+    
 
 
     .hide {
@@ -182,6 +198,8 @@
     max-width: 400px;
     width: 90%;
     display: block;
+    position: absolute;
+    bottom: 2rem;
 
     .row {
         display: flex;
