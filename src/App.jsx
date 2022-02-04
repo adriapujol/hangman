@@ -121,18 +121,20 @@ function App() {
           }
         </div>
         <div className="hangman">
-          <div className={lives < 10 ? "st1" : "st1 hide"}></div>
-          <div className={lives < 9 ? "st2" : "st2 hide"}></div>
-          <div className={lives < 8 ? "st3" : "st3 hide"}></div>
-          <div className={lives < 5 ? "body" : "body hide"}></div>
-          <div className={lives < 7 ? "rope" : "rope hide"}></div>
-          <div className={lives < 6 ? "head" : "head hide"}></div>
-          <div className={lives < 4 ? "armLeft" : "armLeft hide"}></div>
-          <div className={lives < 3 ? "armRight" : "armRight hide"}></div>
-          <div className={lives < 2 ? "legLeft" : "legLeft hide"}></div>
-          <div className={lives < 1 ? "legRight" : "legRight hide"}></div>
+          <div className={lives < 10 ? "hm st1" : "hm st1 hide"}></div>
+          <div className={lives < 9 ? "hm st2" : "hm st2 hide"}></div>
+          <div className={lives < 8 ? "hm st3" : "hm st3 hide"}></div>
+          <div className={lives < 5 ? "hm body" : "hm body hide"}></div>
+          <div className={lives < 7 ? "hm rope" : "hm rope hide"}></div>
+          <div className={lives < 6 ? "hm head" : "hm head hide"}></div>
+          <div className={lives < 4 ? "hm armLeft" : "hm armLeft hide"}></div>
+          <div className={lives < 3 ? "hm armRight" : "hm armRight hide"}></div>
+          <div className={lives < 2 ? "hm legLeft" : "hm legLeft hide"}></div>
+          <div className={lives < 1 ? "hm legRight" : "hm legRight hide"}></div>
+        </div>
+        {/* <div className="hangman"> */}
 
-          {/* <img src={background} alt="Background" />
+        {/* <img src={background} alt="Background" />
           <img src={woodL} alt="Structure" />
           <img src={woodM} alt="Structure" />
           <img src={woodS} alt="Structure" />
@@ -143,7 +145,7 @@ function App() {
           <img src={armRight} alt="Right arm" />
           <img src={legLeft} alt="Left leg" />
           <img src={legRight} alt="Right leg" /> */}
-          {/* <div className={lives < 10 ? "structure st1" : "structure st1 hide"}></div>
+        {/* <div className={lives < 10 ? "structure st1" : "structure st1 hide"}></div>
           <div className={lives < 9 ? "structure st2" : "structure st2 hide"}></div>
           <div className={lives < 8 ? "structure st3" : "structure st3 hide"}></div>
           <div className={lives < 7 ? "rope" : "rope hide"}></div>
@@ -153,7 +155,7 @@ function App() {
           <div className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"}></div>
           <div className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"}></div>
           <div className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"}></div> */}
-        </div>
+        {/* </div> */}
       </section>
       <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
     </div>
