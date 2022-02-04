@@ -95,8 +95,8 @@ function App() {
         </div>
       </nav>
       <section className="game">
-
-        <img src={background} alt="Background" />
+        {/* <img src={background} alt="Background" /> */}
+        {/* <img src={background} alt="Background" />
         <img src={woodL} alt="Structure" className={lives < 10 ? "structure st1" : "structure st1 hide"} />
         <img src={woodM} alt="Structure" className={lives < 9 ? "structure st2" : "structure st2 hide"} />
         <img src={woodS} alt="Structure" className={lives < 8 ? "structure st3" : "structure st3 hide"} />
@@ -106,7 +106,7 @@ function App() {
         <img src={armLeft} alt="Left arm" className={lives < 4 ? "man limbs arm1" : "man limbs arm1 hide"} />
         <img src={armRight} alt="Right arm" className={lives < 3 ? "man limbs arm2" : "man limbs arm2 hide"} />
         <img src={legLeft} alt="Left leg" className={lives < 2 ? "man limbs leg1" : "man limbs leg1 hide"} />
-        <img src={legRight} alt="Right leg" className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"} />
+        <img src={legRight} alt="Right leg" className={lives < 1 ? "man limbs leg2" : "man limbs leg2 hide"} /> */}
 
         <div className="word">
           {
@@ -121,6 +121,17 @@ function App() {
           }
         </div>
         <div className="hangman">
+          <div className={lives < 10 ? "st1" : "st1 hide"}></div>
+          <div className={lives < 9 ? "st2" : "st2 hide"}></div>
+          <div className={lives < 8 ? "st3" : "st3 hide"}></div>
+          <div className={lives < 5 ? "body" : "body hide"}></div>
+          <div className={lives < 7 ? "rope" : "rope hide"}></div>
+          <div className={lives < 6 ? "head" : "head hide"}></div>
+          <div className={lives < 4 ? "armLeft" : "armLeft hide"}></div>
+          <div className={lives < 3 ? "armRight" : "armRight hide"}></div>
+          <div className={lives < 2 ? "legLeft" : "legLeft hide"}></div>
+          <div className={lives < 1 ? "legRight" : "legRight hide"}></div>
+
           {/* <img src={background} alt="Background" />
           <img src={woodL} alt="Structure" />
           <img src={woodM} alt="Structure" />

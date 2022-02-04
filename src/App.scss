@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    // overflow: hidden;
 
     // background-image: url('./img/background.jpg');
     // background-repeat: no-repeat;
@@ -49,6 +49,7 @@
         img {
             position: absolute;
             top: 0;
+            z-index: -1;
             // left: 0;
             width: auto;
             height: 100%;
@@ -90,100 +91,62 @@
             position: relative;
             width: 100%;
             height: 100%;
-            // background-color: rgb(221, 202, 202);
 
-            img {
+            div {
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: auto;
                 height: 100%;
+                width: 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-attachment: fixed;
+                // background-size: 100% auto;
+                background-size: auto 100%;
+
+                @media only screen and (min-width: 1020px) {
+                }
             }
 
-            // .structure {
-            //     background-color: rgb(119, 64, 39);
-            // }
-            // .st1 {
-            //     height: 350px;
-            //     width: 40px;
-            //     bottom: 0px;
-            // }
+            .st1 {
+                background-image: url('./img/woodL.png');
+            }
 
-            // .st2 {
-            //     height: 40px;
-            //     width: 200px;
-            //     top: 50px;
-            // }
+            .st2 {
+                background-image: url('./img/woodM.png');
+            }
 
-            // .st3 {
-            //     height: 20px;
-            //     width: 100px;
-            //     transform: rotate(-45deg);
-            //     top: 100px;
-            //     left: 10px;
-            // }
+            .st3 {
+                background-image: url('./img/woodS.png');
+            }
 
-            // .rope {
-            //     height: 100px;
-            //     width: 10px;
-            //     background-color: rgb(144, 110, 55);
-            //     top: 50px;
-            //     left: 145px;
-            // }
+            .rope {
+                background-image: url('./img/rope.png');
+            }
 
-            // .man {
-            //     background-color: rgb(98, 98, 98);
-            // }
+            .head {
+                background-image: url('./img/head.png');
+            }
 
-            // .head {
-            //     height: 50px;
-            //     width: 50px;
-            //     border-radius: 50%;
-            //     left: 150px;
-            //     top: 120px;
-            //     transform: translateX(-50%);
-            // }
+            .body {
+                background-image: url('./img/body.png');
+            }
 
-            // .body {
-            //     height: 80px;
-            //     width: 50px;
-            //     border-radius: 5px;
-            //     left: 150px;
-            //     top: 170px;
-            //     transform: translateX(-50%);
-            // }
+            .armLeft {
+                background-image: url('./img/armLeft.png');
+            }
 
-            // .limbs {
-            //     height: 70px;
-            //     width: 15px;
-            //     border-radius: 5px;
-                
-            // }
-            // .arm1, .arm2 {
-            //     top: 170px;
-            // }
-            // .arm1 {
-            //     left: 110px;
-            //     transform: rotate(25deg);
-                
-            // }
-            // .arm2 {
-            //     left: 175px;
-            //     transform: rotate(-25deg);
-            // }
+            .armRight {
+                background-image: url('./img/armRight.png');
+            }
 
-            // .leg1,.leg2 {
-            //     height: 80px;
-            //     top: 240px;
-            // }
-            // .leg1 {
-            //     left: 125px;
-            // }
-            // .leg2 {
-            //     left: 160px;
-            // }
+            .legLeft {
+                background-image: url('./img/legLeft.png');
+            }
 
-
+            .legRight {
+                background-image: url('./img/legRight.png');
+            }
 
         }
     
