@@ -6,13 +6,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // overflow: hidden;
-
-    // background-image: url('./img/background.jpg');
-    // background-repeat: no-repeat;
-    // background-position: center center;
-    // background-attachment: fixed;
-    // background-size: 100% auto;
 }
 
 .nav {
@@ -46,73 +39,39 @@
     flex-direction: column;
     align-items: center;
 
-    background-image: url('./img/background_3.jpg');
+    background-image: url('./img/background_pano.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
 
-    @media only screen and (min-width: 1020px) {
-        background-size: auto 100%;
-    }
+    @media only screen and (max-width: 912px) {
+        background-image: url('./img/background_mobile.jpg');
+    } 
 
-    
-        .hm {
+        .hangman-wrapper {
             position: absolute;
             top: 0;
             left: 0;
             height: 100%;
             width: 100%;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-            background-size: auto 100%;
-        }
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        // .hangman {
-        //     height: 100%;
-        //     width: 100%;
-
-        // }
-
-        .st1 {
-            background-image: url('./img/woodL.png');
-        }
-
-        .st2 {
-            background-image: url('./img/woodM.png');
-        }
-
-        .st3 {
-            background-image: url('./img/woodS.png');
-        }
-
-        .rope {
-            background-image: url('./img/rope.png');
-        }
-
-        .head {
-            background-image: url('./img/head.png');
-        }
-
-        .body {
-            background-image: url('./img/body.png');
-        }
-
-        .armLeft {
-            background-image: url('./img/armLeft.png');
-        }
-
-        .armRight {
-            background-image: url('./img/armRight.png');
-        }
-
-        .legLeft {
-            background-image: url('./img/legLeft.png');
-        }
-
-        .legRight {
-            background-image: url('./img/legRight.png');
+            .hangman {
+                position: relative;
+                height: 50%;
+                width: 50%;    
+                img {
+                    position: absolute;
+                    top: 40%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    height: 100%;
+                    width: auto;
+                }
+            }
         }
 
     .word {
