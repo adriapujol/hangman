@@ -11,7 +11,7 @@ import rope from './img/rope.png';
 import woodS from './img/woodS.png';
 import woodM from './img/woodM.png';
 import woodL from './img/woodL.png';
-import background from './img/background.jpg';
+
 
 
 function App() {
@@ -107,17 +107,19 @@ function App() {
             })
           }
         </div>
-        <div className="hangman">
-          <div className={lives < 10 ? "hm st1" : "hm st1 hide"}></div>
-          <div className={lives < 9 ? "hm st2" : "hm st2 hide"}></div>
-          <div className={lives < 8 ? "hm st3" : "hm st3 hide"}></div>
-          <div className={lives < 5 ? "hm body" : "hm body hide"}></div>
-          <div className={lives < 7 ? "hm rope" : "hm rope hide"}></div>
-          <div className={lives < 6 ? "hm head" : "hm head hide"}></div>
-          <div className={lives < 4 ? "hm armLeft" : "hm armLeft hide"}></div>
-          <div className={lives < 3 ? "hm armRight" : "hm armRight hide"}></div>
-          <div className={lives < 2 ? "hm legLeft" : "hm legLeft hide"}></div>
-          <div className={lives < 1 ? "hm legRight" : "hm legRight hide"}></div>
+        <div className="hangman-wrapper">
+          <div className="hangman">
+            <img src={woodL} className={lives < 10 ? "" : "hide"} />
+            <img src={woodM} className={lives < 9 ? "" : "hide"} />
+            <img src={woodS} className={lives < 8 ? "" : "hide"} />
+            <img src={body} className={lives < 5 ? "" : "hide"} />
+            <img src={rope} className={lives < 7 ? "" : "hide"} />
+            <img src={head} className={lives < 6 ? "" : "hide"} />
+            <img src={armLeft} className={lives < 4 ? "" : "hide"} />
+            <img src={armRight} className={lives < 3 ? "" : "hide"} />
+            <img src={legLeft} className={lives < 2 ? "" : "hide"} />
+            <img src={legRight} className={lives < 1 ? "" : "hide"} />
+          </div>
         </div>
       </section>
       <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
