@@ -16,20 +16,27 @@
     justify-content: center;
     align-items: center;
     z-index: 99;
+    
 
     .nav-content {
         width: 90%;
-        // height: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 5px 20px;
-        font-family: 'Passion One', cursive;
+        color: #ffffff;
+        
+        .info, .score {
+            width: 100px;
+        }
+
+        .score {
+            font-size: 1.5rem;
+        }
 
 
         .title {
-            font-family: 'Fredericka the Great', cursive;
-            color: #ffffff;
+            letter-spacing: 0.3rem;
             font-size: 2rem;
         }
 
@@ -91,15 +98,14 @@
     .word {
         display: flex;
         justify-content: center;
-        font-size: 4rem;
+        font-size: 3rem;
         width: 100%;
         max-width: 600px;
-        margin: 60px 0 0 0;
+        margin: 100px 0 0 0;
         z-index: 99;
 
         @media only screen and (max-width: 650px) {
-            // margin: 10% 0 0 0;
-            font-size: 3rem;
+            margin: 60px 0 0 0;
             width: 95%;
         } 
 
@@ -108,13 +114,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50px;
-            width: 50px;
+            height: 60px;
+            width: 60px;
             margin-right: 5px;
             border-bottom: 2px solid $black;
 
-            @media only screen and (max-width: 650px) {
+            @media only screen and (max-width: 400px) {
+                font-size: 2rem;
                 height: 35px;
+                width: 35px;
             } 
 
             &:last-child {

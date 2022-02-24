@@ -91,7 +91,7 @@ function App() {
         <div className="nav-content">
           <button className="info">?</button>
           <div className="title">Hangman</div>
-          <button className="logo">score</button>
+          <div className="score">score: 0/0</div>
         </div>
       </nav>
       <section className="game">
