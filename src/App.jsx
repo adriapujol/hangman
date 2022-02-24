@@ -89,9 +89,9 @@ function App() {
     <div className="wrapper">
       <nav className='nav'>
         <div className="nav-content">
-          <div className="logo">H</div>
-          <div className="title">Hangman</div>
           <button className="info">?</button>
+          <div className="title">Hangman</div>
+          <div className="score">score: 0/0</div>
         </div>
       </nav>
       <section className="game">
