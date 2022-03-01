@@ -33,11 +33,6 @@ function App() {
   const uniqueLetters = [...new Set(letters)];
 
 
-  // useEffect(() => {
-  //   window.addEventListener("keypress", handleKeyPress);
-  //   return () => window.removeEventListener("keypress", handleKeyPress);
-  // }, [correctGuesses, wrongGuesses]);
-
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
   }, [lives]);

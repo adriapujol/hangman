@@ -12,11 +12,12 @@
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99;
+    
     
 
     .nav-content {
@@ -27,13 +28,13 @@
         padding: 5px 20px;
         color: #ffffff;
         
+        
+        .info>button, .score, .title {
+            font-family: 'Passion One', cursive;
+        }
+        
         .info, .score {
             width: 100px;
-
-            @media only screen and (max-width: 500px) {
-                // width: 100%;
-
-            } 
         }
 
         .score {
@@ -75,6 +76,11 @@
 
         @media only screen and (max-width: 750px) {
             width: 100%;
+        }
+        
+        @media only screen and (max-width: 500px) {
+            padding: 5px 10px;
+
         } 
     }
 
