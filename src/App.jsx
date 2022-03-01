@@ -33,11 +33,6 @@ function App() {
   const uniqueLetters = [...new Set(letters)];
 
 
-  // useEffect(() => {
-  //   window.addEventListener("keypress", handleKeyPress);
-  //   return () => window.removeEventListener("keypress", handleKeyPress);
-  // }, [correctGuesses, wrongGuesses]);
-
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
   }, [lives]);
@@ -89,7 +84,9 @@ function App() {
     <div className="wrapper">
       <nav className='nav'>
         <div className="nav-content">
-          <button className="info">?</button>
+          <div className="info">
+            <button>?</button>
+          </div>
           <div className="title">Hangman</div>
           <div className="score">score: 0/0</div>
         </div>
