@@ -89,7 +89,9 @@ function App() {
     <div className="wrapper">
       <nav className='nav'>
         <div className="nav-content">
-          <button className="info">?</button>
+          <div className="info">
+            <button>?</button>
+          </div>
           <div className="title">Hangman</div>
           <div className="score">score: 0/0</div>
         </div>
