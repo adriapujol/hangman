@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import axiosOptions from './helpers/axiosOptions';
 import './App.scss';
 import Keyboard from './components/Keyboard';
+import Navbar from './components/Navbar';
 import head from './img/head.png';
 import body from './img/body.png';
 import armLeft from './img/armLeft.png';
@@ -14,13 +17,16 @@ import woodL from './img/woodL.png';
 
 
 
+
 function App() {
 
 
   const [lives, setLives] = useState(10);
   const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("caramelo");
+  const [word, setWord] = useState("words");
+  const [won, setWon] = useState(0);
+  const [played, setPlayed] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
 
@@ -32,6 +38,13 @@ function App() {
   const letters = word.split("");
   const uniqueLetters = [...new Set(letters)];
 
+  useEffect(() => {
+    axios.request(axiosOptions).then(function (response) {
+      setWord(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+  }, []);
 
   useEffect(() => {
     if (lives < 1) return setGameOver(true);
@@ -43,20 +56,16 @@ function App() {
 
   useEffect(() => {
     if (gameOver) {
-      playerWin ? alert("YOU WON") : alert("YOU LOST!");
+      if (playerWin) {
+        alert("YOU WON");
+        setWon(prevWon => prevWon + 1);
+      } else {
+        alert("YOU LOST");
+      }
+      setPlayed(prevPlayed => prevPlayed + 1);
     }
   }, [gameOver])
 
-
-  const handleKeyPress = (e) => {
-    e.preventDefault();
-    if (!gameOver) checkLetter(e.key);
-  }
-  const handleLetterClick = (e) => {
-    e.preventDefault();
-    if (!gameOver) checkLetter(e.target.value);
-
-  }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
     if (uniqueLetters.length === rightGuesses.length) {
@@ -82,15 +91,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <nav className='nav'>
-        <div className="nav-content">
-          <div className="info">
-            <button>?</button>
-          </div>
-          <div className="title">Hangman</div>
-          <div className="score">score: 0/0</div>
-        </div>
-      </nav>
+      <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
           {
