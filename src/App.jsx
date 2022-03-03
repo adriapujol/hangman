@@ -4,6 +4,7 @@ import axiosOptions from './helpers/axiosOptions';
 import './App.scss';
 import Keyboard from './components/Keyboard';
 import Navbar from './components/Navbar';
+import GameOverInfo from './components/GameOverInfo';
 import head from './img/head.png';
 import body from './img/body.png';
 import armLeft from './img/armLeft.png';
@@ -91,6 +92,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      <GameOverInfo word={word} playerWin={playerWin} />
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
