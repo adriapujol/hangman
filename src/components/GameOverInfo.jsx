@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GameOverInfo({ word, playerWin }) {
+function GameOverInfo({ word, playerWin, startGame }) {
     return (
         <div className='modal-container'>
             <div className="modal">
@@ -18,6 +18,7 @@ function GameOverInfo({ word, playerWin }) {
                         `The word was ${word}`
                     }
                 </p>
+                <button className="play-again" onClick={() => startGame()} >Play again</button>
             </div>
         </div>
     )

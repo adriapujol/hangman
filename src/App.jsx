@@ -31,6 +31,7 @@ function App() {
   const [played, setPlayed] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
+  const [showGameOverInfo, setShowGameOverInfo] = useState(false);
 
 
   const validInput = new RegExp('[aA-zZ]');
@@ -59,13 +60,9 @@ function App() {
 
   useEffect(() => {
     if (gameOver) {
-      if (playerWin) {
-        alert("YOU WON");
-        setWon(prevWon => prevWon + 1);
-      } else {
-        alert("YOU LOST");
-      }
+      if (playerWin) setWon(prevWon => prevWon + 1);
       setPlayed(prevPlayed => prevPlayed + 1);
+      setShowGameOverInfo(true);
     }
   }, [gameOver])
 
@@ -95,9 +92,28 @@ function App() {
     };
   }
 
+  const startGame = () => {
+
+    setPlayerWin(false);
+    setGameOver(false);
+    setWrongGuesses([]);
+    setCorrectGuesses([]);
+    setLives(10);
+
+    axios.request(axiosOptions).then(function (response) {
+      setWord(response.data);
+    }).catch(function (error) {
+      let num = getRandomNumber(0, 21);
+      setWord(words[num]);
+    });
+
+    setShowGameOverInfo(false);
+
+  };
+
   return (
     <div className="wrapper">
-      <GameOverInfo word={word} playerWin={playerWin} />
+      {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
