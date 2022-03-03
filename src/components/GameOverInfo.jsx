@@ -8,17 +8,16 @@ function GameOverInfo({ word, playerWin, startGame }) {
                     <div ></div>
                     <div id='bar-2'></div>
                 </button>
-                <p>
+                <div className="info-content"></div>
+                <h1>
                     {
-                        playerWin ? "YOU WON" : "YOU LOST"
+                        playerWin ? "YAY! YOU WON!" : "OOOH! YOU LOST!"
                     }
-                </p>
+                </h1>
                 <p>
-                    {
-                        `The word was ${word}`
-                    }
+                    The word was <span className={playerWin ? "succeed" : "failed"}>{word}</span>
                 </p>
-                <button className="play-again" onClick={() => startGame()} >Play again</button>
+                <button className="btn-play shake" onClick={() => startGame()} >Play again</button>
             </div>
         </div>
     )

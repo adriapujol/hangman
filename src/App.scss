@@ -261,18 +261,52 @@
         width: 80%;
         max-height: 700px;
         max-width: 500px;
-
+        
         position: relative;
-
+        
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         flex-direction: column;
-
+        
         animation-name: smallToBig;
         animation-duration: 500ms;
         animation-delay: 200ms;
         animation-fill-mode: backwards;
+        
+        *{
+            font-family: 'Passion One', cursive;
+        }
+
+
+        p {
+            font-size: 1.5rem;
+            
+        }
+
+        .failed {
+            color: $medium_red;
+        }
+        .succeed {
+            color: $green_medium;
+        }
+
+        .btn-play {
+            border-style: none;
+            cursor: pointer;
+            background-color: $medium_orange;
+            color: $white;
+            font-size: 1.5rem;
+            padding: 10px 10px;
+            border-radius: 6px;
+            transition: background-color 100ms ease-in-out;
+
+            &:hover {
+                background-color: $green_medium;
+                animation: shake;
+                animation-duration: 600ms;
+            }
+        }
 
         .close-modal {
             position: absolute;
@@ -287,7 +321,6 @@
             transition: background-color 0.1s ease-in-out;
 
             &:hover {
-                // transform: rotate(180deg);
                 background-color: $medium_red;
             }
 
@@ -328,5 +361,26 @@
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);    
+    }
+    5% {
+        transform: translateX(2px);    
+    }
+    10% {
+        transform: translateX(-2px);    
+    }
+    15% {
+        transform: translateX(2px);    
+    }
+    20% {
+        transform: translateX(-2px);    
+    }
+    25% {
+        transform: translateX(0);    
     }
 }
