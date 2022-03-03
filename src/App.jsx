@@ -5,6 +5,7 @@ import './App.scss';
 import Keyboard from './components/Keyboard';
 import Navbar from './components/Navbar';
 import GameOverInfo from './components/GameOverInfo';
+import words from './words.json';
 import head from './img/head.png';
 import body from './img/body.png';
 import armLeft from './img/armLeft.png';
@@ -43,7 +44,8 @@ function App() {
     axios.request(axiosOptions).then(function (response) {
       setWord(response.data);
     }).catch(function (error) {
-      console.error(error);
+      let num = getRandomNumber(0, 21);
+      setWord(words[num]);
     });
   }, []);
 
@@ -67,6 +69,9 @@ function App() {
     }
   }, [gameOver])
 
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
     if (uniqueLetters.length === rightGuesses.length) {
