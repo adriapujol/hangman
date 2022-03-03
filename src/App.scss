@@ -211,8 +211,16 @@
 
         &:hover {
             background-color: rgba($color: #ffffff, $alpha: 0.3);
-            border: 2px solid $green_medium;
+            border: 2px solid $medium_orange;
         }
+
+        @media only screen and (max-width: 650px) {
+            border: 1px solid $black;
+
+            &:hover {
+                border: 1px solid $medium_orange;
+            }
+        } 
     }
     .half {
         flex: 0.5;
