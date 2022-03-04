@@ -4,14 +4,14 @@ function Solve({ setShowSolve, word, setPlayerWin, setGameOver }) {
     const [guess, setGuess] = useState('');
     const handleSolveClick = (e) => {
         e.preventDefault();
-        if (word === guess.toLowerCase()) setPlayerWin(true);
+        if (word) setPlayerWin(true);
         setGameOver(true);
         setShowSolve(false);
     }
 
     const handleInput = (e) => {
         e.preventDefault();
-        setGuess(e.target.value);
+        setGuess(e.target.value.toLowerCase());
     }
 
     return (
