@@ -4,6 +4,8 @@ import axiosOptions from './helpers/axiosOptions';
 import './App.scss';
 import Keyboard from './components/Keyboard';
 import Navbar from './components/Navbar';
+import GameOverInfo from './components/GameOverInfo';
+import words from './words.json';
 import head from './img/head.png';
 import body from './img/body.png';
 import armLeft from './img/armLeft.png';
@@ -29,6 +31,7 @@ function App() {
   const [played, setPlayed] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
+  const [showGameOverInfo, setShowGameOverInfo] = useState(false);
 
 
   const validInput = new RegExp('[aA-zZ]');
@@ -39,11 +42,7 @@ function App() {
   const uniqueLetters = [...new Set(letters)];
 
   useEffect(() => {
-    axios.request(axiosOptions).then(function (response) {
-      setWord(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    startGame();
   }, []);
 
   useEffect(() => {
@@ -52,20 +51,38 @@ function App() {
 
   useEffect(() => {
     checkWin(uniqueLetters, correctGuesses);
-  }, [correctGuesses]);
+  }, [correctGuesses, uniqueLetters]);
 
   useEffect(() => {
     if (gameOver) {
-      if (playerWin) {
-        alert("YOU WON");
-        setWon(prevWon => prevWon + 1);
-      } else {
-        alert("YOU LOST");
-      }
+      if (playerWin) setWon(prevWon => prevWon + 1);
       setPlayed(prevPlayed => prevPlayed + 1);
+      setShowGameOverInfo(true);
     }
-  }, [gameOver])
+  }, [gameOver]);
 
+  const startGame = () => {
+
+    setPlayerWin(false);
+    setGameOver(false);
+    setWrongGuesses([]);
+    setCorrectGuesses([]);
+    setLives(10);
+
+    axios.request(axiosOptions).then(function (response) {
+      setWord(response.data);
+    }).catch(function (error) {
+      let num = getRandomNumber(0, 21);
+      setWord(words[num]);
+    });
+
+    setShowGameOverInfo(false);
+
+  };
+
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
 
   const checkWin = (uniqueLetters, rightGuesses) => {
     if (uniqueLetters.length === rightGuesses.length) {
@@ -89,8 +106,11 @@ function App() {
     };
   }
 
+
+
   return (
     <div className="wrapper">
+      {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
@@ -107,16 +127,16 @@ function App() {
         </div>
         <div className="hangman-wrapper">
           <div className="hangman">
-            <img src={woodL} className={lives < 10 ? "" : "hide"} />
-            <img src={woodM} className={lives < 9 ? "" : "hide"} />
-            <img src={woodS} className={lives < 8 ? "" : "hide"} />
-            <img src={body} className={lives < 5 ? "" : "hide"} />
-            <img src={rope} className={lives < 7 ? "" : "hide"} />
-            <img src={head} className={lives < 6 ? "" : "hide"} />
-            <img src={armLeft} className={lives < 4 ? "" : "hide"} />
-            <img src={armRight} className={lives < 3 ? "" : "hide"} />
-            <img src={legLeft} className={lives < 2 ? "" : "hide"} />
-            <img src={legRight} className={lives < 1 ? "" : "hide"} />
+            <img src={woodL} className={lives < 10 ? "" : "hide"} alt="wood" />
+            <img src={woodM} className={lives < 9 ? "" : "hide"} alt="wood" />
+            <img src={woodS} className={lives < 8 ? "" : "hide"} alt="wood" />
+            <img src={body} className={lives < 5 ? "" : "hide"} alt="body" />
+            <img src={rope} className={lives < 7 ? "" : "hide"} alt="rope" />
+            <img src={head} className={lives < 6 ? "" : "hide"} alt="head" />
+            <img src={armLeft} className={lives < 4 ? "" : "hide"} alt="arm" />
+            <img src={armRight} className={lives < 3 ? "" : "hide"} alt="arm" />
+            <img src={legLeft} className={lives < 2 ? "" : "hide"} alt="leg" />
+            <img src={legRight} className={lives < 1 ? "" : "hide"} alt="leg" />
           </div>
         </div>
       </section>
