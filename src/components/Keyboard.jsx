@@ -3,7 +3,7 @@ import Key from './Key';
 
 
 
-function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
+function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setShowSolve }) {
 
     const [keyBoardKeys, setKeyBoardKeys] = useState(
         {
@@ -14,6 +14,7 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
     );
 
     useEffect(() => {
+        if (showSolve) return
         document.addEventListener("keypress", handlePress);
         return () => document.removeEventListener("keypress", handlePress);
     });
@@ -60,7 +61,7 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses }) {
                     if (k === "enter" || k === "solve") {
                         classStyle = classStyle + " one-and-half";
                     }
-                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
+                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} setShowSolve={setShowSolve} />
                 })}
             </div>
 

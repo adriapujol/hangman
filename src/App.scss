@@ -241,6 +241,8 @@
     
 }
 
+// STYLE FOR GAME FINISH MODEL
+
 .modal-container {
     position: fixed;
     top: 0;
@@ -279,32 +281,7 @@
             font-family: 'Passion One', cursive;
         }
 
-        .info-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
 
-            width: 80%;
-            h1 {
-                font-size: 1.7rem;
-                font-weight: 400;
-            }
-            
-            ul {
-                margin-top: 15px;
-                font-size: 1.2rem;
-
-                li {
-                    margin-bottom: 10px;
-                }
-
-                @media only screen and (max-width: 400px) {
-                    font-size: 1rem;
-                } 
-            }
-
-        }
 
         p {
             font-size: 1.5rem;
@@ -339,18 +316,67 @@
             }
         }
 
-            .credits {
-                a {
-                    color: $medium_orange;
-                    text-decoration: none;
-                    
-                    &:hover {
-                        color: $green_medium;
-                    }
-                }
-            }
     }
 
+}
+
+// STYLE FOR INFO MODAL
+
+.info-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 80%;
+    h1 {
+        font-size: 1.7rem;
+        font-weight: 400;
+    }
+    
+    ul {
+        margin-top: 15px;
+        font-size: 1.2rem;
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @media only screen and (max-width: 400px) {
+            font-size: 1rem;
+        } 
+    }
+}
+
+.credits {
+    a {
+        color: $medium_orange;
+        text-decoration: none;
+        
+        &:hover {
+            color: $green_medium;
+        }
+    }
+}
+
+//STYLE FOR SOLVE MODAL
+
+.solve {
+    width: 80%;
+    input {
+        width: 100%;
+        height: 50px;
+        padding: 10px 10px;
+        text-align: center;
+        font-size: 2rem;
+        border: 5px solid $medium_orange;
+        border-radius: 15px;
+
+        &:focus {
+            border: 5px solid $green_medium;
+            outline: none;
+        }
+    }
 }
 
 

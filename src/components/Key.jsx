@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function Key({ letter, checkLetter, classStyle }) {
+function Key({ letter, checkLetter, classStyle, setShowSolve }) {
 
     const [clicked, setClicked] = useState(false);
 
@@ -10,13 +10,17 @@ function Key({ letter, checkLetter, classStyle }) {
         checkLetter(e.target.value);
         setTimeout(() => setClicked(false), 200);
     }
+    const handleShowSolve = (e) => {
+        e.preventDefault();
+        setShowSolve(true);
+    }
 
     return (
         <button
             className={clicked ? classStyle + " clicked" : classStyle}
             id={letter}
             value={letter}
-            onClick={handleClick}
+            onClick={letter === "solve" ? handleShowSolve : handleClick}
         >
             {letter}
         </button>
