@@ -5,6 +5,7 @@ import './App.scss';
 import Keyboard from './components/Keyboard';
 import Navbar from './components/Navbar';
 import GameOverInfo from './components/GameOverInfo';
+import Solve from './components/Solve';
 import words from './words.json';
 import head from './img/head.png';
 import body from './img/body.png';
@@ -32,6 +33,7 @@ function App() {
   const [correctGuesses, setCorrectGuesses] = useState([]);
   const [wrongGuesses, setWrongGuesses] = useState([]);
   const [showGameOverInfo, setShowGameOverInfo] = useState(false);
+  const [showSolve, setShowSolve] = useState(false);
 
 
   const validInput = new RegExp('[aA-zZ]');
@@ -111,6 +113,7 @@ function App() {
   return (
     <div className="wrapper">
       {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
+      {showSolve && <Solve setShowSolve={setShowSolve} word={word} setPlayerWin={setPlayerWin} setGameOver={setGameOver} />}
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
@@ -140,7 +143,7 @@ function App() {
           </div>
         </div>
       </section>
-      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} />
+      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} showSolve={showSolve} setShowSolve={setShowSolve} />
     </div>
   );
 }
