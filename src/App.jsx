@@ -110,7 +110,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      {<GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
+      {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
@@ -127,16 +127,16 @@ function App() {
         </div>
         <div className="hangman-wrapper">
           <div className="hangman">
-            <img src={woodL} className={lives < 10 ? "" : "hide"} />
-            <img src={woodM} className={lives < 9 ? "" : "hide"} />
-            <img src={woodS} className={lives < 8 ? "" : "hide"} />
-            <img src={body} className={lives < 5 ? "" : "hide"} />
-            <img src={rope} className={lives < 7 ? "" : "hide"} />
-            <img src={head} className={lives < 6 ? "" : "hide"} />
-            <img src={armLeft} className={lives < 4 ? "" : "hide"} />
-            <img src={armRight} className={lives < 3 ? "" : "hide"} />
-            <img src={legLeft} className={lives < 2 ? "" : "hide"} />
-            <img src={legRight} className={lives < 1 ? "" : "hide"} />
+            <img src={woodL} className={lives < 10 ? "" : "hide"} alt="wood" />
+            <img src={woodM} className={lives < 9 ? "" : "hide"} alt="wood" />
+            <img src={woodS} className={lives < 8 ? "" : "hide"} alt="wood" />
+            <img src={body} className={lives < 5 ? "" : "hide"} alt="body" />
+            <img src={rope} className={lives < 7 ? "" : "hide"} alt="rope" />
+            <img src={head} className={lives < 6 ? "" : "hide"} alt="head" />
+            <img src={armLeft} className={lives < 4 ? "" : "hide"} alt="arm" />
+            <img src={armRight} className={lives < 3 ? "" : "hide"} alt="arm" />
+            <img src={legLeft} className={lives < 2 ? "" : "hide"} alt="leg" />
+            <img src={legRight} className={lives < 1 ? "" : "hide"} alt="leg" />
           </div>
         </div>
       </section>

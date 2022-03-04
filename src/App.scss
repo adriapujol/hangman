@@ -261,6 +261,7 @@
         width: 80%;
         max-height: 700px;
         max-width: 500px;
+        padding: 10px 10px;
         
         position: relative;
         
@@ -278,6 +279,32 @@
             font-family: 'Passion One', cursive;
         }
 
+        .info-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            width: 80%;
+            h1 {
+                font-size: 1.7rem;
+                font-weight: 400;
+            }
+            
+            ul {
+                margin-top: 15px;
+                font-size: 1.2rem;
+
+                li {
+                    margin-bottom: 10px;
+                }
+
+                @media only screen and (max-width: 400px) {
+                    font-size: 1rem;
+                } 
+            }
+
+        }
 
         p {
             font-size: 1.5rem;
@@ -289,6 +316,10 @@
         }
         .succeed {
             color: $green_medium;
+        }
+
+        img {
+            height: 50%;
         }
 
         .btn-play {
@@ -308,37 +339,16 @@
             }
         }
 
-        .close-modal {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            height: 25px;
-            width: 25px;
-            background-color: $medium_orange;
-            border-style: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.1s ease-in-out;
-
-            &:hover {
-                background-color: $medium_red;
+            .credits {
+                a {
+                    color: $medium_orange;
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: $green_medium;
+                    }
+                }
             }
-
-            div {
-                height: 20px;
-                width: 5px;
-                background-color: $white;
-
-                position: absolute;
-                top: 5px;
-                right: 5px;
-                transform: translate(-5px, -2.5px) rotate(45deg);
-            }
-            #bar-2{
-                transform: translate(-5px, -2.5px) rotate(-45deg);
-            }
-
-        }
     }
 
 }

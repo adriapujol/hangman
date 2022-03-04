@@ -1,19 +1,17 @@
-import React from 'react'
+import React from 'react';
+import bearWin from '../img/bear_win.png';
+import bearLose from '../img/bear_lose.png';
 
 function GameOverInfo({ word, playerWin, startGame }) {
     return (
         <div className='modal-container'>
             <div className="modal">
-                <button className="close-modal">
-                    <div ></div>
-                    <div id='bar-2'></div>
-                </button>
-                <div className="info-content"></div>
                 <h1>
                     {
                         playerWin ? "YAY! YOU WON!" : "OOOH! YOU LOST!"
                     }
                 </h1>
+                <img src={playerWin ? bearWin : bearLose} alt="bear" />
                 <p>
                     The word was <span className={playerWin ? "succeed" : "failed"}>{word}</span>
                 </p>
