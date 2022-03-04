@@ -113,7 +113,7 @@ function App() {
   return (
     <div className="wrapper">
       {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
-      {showSolve && <Solve setShowSolve={setShowSolve} />}
+      {showSolve && <Solve setShowSolve={setShowSolve} word={word} setPlayerWin={setPlayerWin} setGameOver={setGameOver} />}
       <Navbar won={won} played={played} />
       <section className="game">
         <div className="word">
