@@ -28,11 +28,6 @@
         padding: 5px 20px;
         color: #ffffff;
         
-        
-        .info>button, .score, .title {
-            font-family: 'Passion One', cursive;
-        }
-        
         .info, .score {
             width: 100px;
         }
@@ -191,6 +186,8 @@
         margin-bottom: 5px;
     }
     .key {
+        
+        font-family: 'Roboto', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -241,7 +238,7 @@
     
 }
 
-// STYLE FOR GAME FINISH MODEL
+// STYLE FOR GAME FINISH MODAL AND MODAL IN GENERAL
 
 .modal-container {
     position: fixed;
@@ -277,12 +274,6 @@
         animation-delay: 200ms;
         animation-fill-mode: backwards;
         
-        *{
-            font-family: 'Passion One', cursive;
-        }
-
-
-
         p {
             font-size: 1.5rem;
             
@@ -314,6 +305,11 @@
                 animation: shake;
                 animation-duration: 600ms;
             }
+
+            @media only screen and (max-width: 385px) {
+                padding: 8px 8px;
+                font-size: 1rem;
+            } 
         }
 
     }
@@ -345,10 +341,14 @@
         @media only screen and (max-width: 400px) {
             font-size: 1rem;
         } 
+        @media only screen and (max-width: 385px) {
+            font-size: 0.7rem;
+        } 
     }
 }
 
 .credits {
+    margin-top: 10px;
     a {
         color: $medium_orange;
         text-decoration: none;
@@ -357,6 +357,9 @@
             color: $green_medium;
         }
     }
+    @media only screen and (max-width: 385px) {
+        font-size: 0.6rem;
+    } 
 }
 
 //STYLE FOR SOLVE MODAL
