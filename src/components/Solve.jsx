@@ -4,7 +4,7 @@ function Solve({ setShowSolve, word, setPlayerWin, setGameOver }) {
     const [guess, setGuess] = useState('');
     const handleSolve = (e) => {
         e.preventDefault();
-        if (word) setPlayerWin(true);
+        if (word === guess) setPlayerWin(true);
         setGameOver(true);
         setShowSolve(false);
     }
