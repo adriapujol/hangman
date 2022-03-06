@@ -8,9 +8,9 @@ function Info({ setShowInfo }) {
                     <h1>Instructions</h1>
                     <ul>
                         <li>Try to guess the word one letter at a time.</li>
-                        <li>Evey correct guess will show the letter in their place withing the word.</li>
-                        <li>Every incorrect guess will bring you one step closer to losing</li>
-                        <li>Use the solve button if you know what the word is. Be careful! If you're wrong you'll lose instantly</li>
+                        <li>Evey correct guess will reveal the letter and her position.</li>
+                        <li>Every incorrect guess will bring you one step closer to losing.</li>
+                        <li>You can use the solve button if you already know the word. But be careful! If you're wrong you'll lose.</li>
                         <li>Have fun!</li>
                     </ul>
 

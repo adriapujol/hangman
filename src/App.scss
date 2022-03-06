@@ -238,7 +238,7 @@
     
 }
 
-// STYLE FOR GAME FINISH MODEL
+// STYLE FOR GAME FINISH MODAL AND MODAL IN GENERAL
 
 .modal-container {
     position: fixed;
@@ -305,6 +305,11 @@
                 animation: shake;
                 animation-duration: 600ms;
             }
+
+            @media only screen and (max-width: 385px) {
+                padding: 8px 8px;
+                font-size: 1rem;
+            } 
         }
 
     }
@@ -336,10 +341,14 @@
         @media only screen and (max-width: 400px) {
             font-size: 1rem;
         } 
+        @media only screen and (max-width: 385px) {
+            font-size: 0.7rem;
+        } 
     }
 }
 
 .credits {
+    margin-top: 10px;
     a {
         color: $medium_orange;
         text-decoration: none;
@@ -348,6 +357,9 @@
             color: $green_medium;
         }
     }
+    @media only screen and (max-width: 385px) {
+        font-size: 0.6rem;
+    } 
 }
 
 //STYLE FOR SOLVE MODAL
