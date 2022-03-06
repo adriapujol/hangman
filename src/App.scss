@@ -304,7 +304,7 @@
             cursor: pointer;
             background-color: $medium_orange;
             color: $white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             padding: 10px 10px;
             border-radius: 6px;
             transition: background-color 100ms ease-in-out;
@@ -363,22 +363,67 @@
 
 .solve {
     width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    * {
+        margin-bottom: 20px;
+        font-weight: 400;
+        text-align: center;
+        
+
+        @media only screen and (max-width: 400px) {
+            margin-bottom: 10px;
+        } 
+        @media only screen and (max-width: 330px) {
+            margin-bottom: 5px;
+        } 
+    }
+
+    div {
+        font-size: 1.3rem;
+
+        @media only screen and (max-width: 400px) {
+            font-size: 0.8rem;
+        } 
+    }
+
     input {
         width: 100%;
         height: 50px;
         padding: 10px 10px;
-        text-align: center;
         font-size: 2rem;
         border: 5px solid $medium_orange;
         border-radius: 15px;
+
+        @media only screen and (max-width: 330px) {
+            height: 40px;
+            padding: 5px 5px;
+            font-size: 1.3rem;
+        } 
 
         &:focus {
             border: 5px solid $green_medium;
             outline: none;
         }
     }
+
 }
 
+.button-box {
+    button:first-child {
+        margin-right: 10px;
+    }
+    #btn-cancel {
+        background-color: $medium_red;
+
+        &:hover {
+            background-color: $dark_red;
+        }
+    }
+}
 
 
 
