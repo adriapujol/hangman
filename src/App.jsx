@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import axiosOptions from './helpers/axiosOptions';
 import './App.scss';
@@ -30,30 +30,10 @@ function App() {
 
   const validInput = new RegExp('[aA-zZ]');
 
-  const letters = word.split("");
-  const uniqueLetters = [...new Set(letters)];
+  const letters = useMemo(() => word.split(""), [word]);
+  const uniqueLetters = useMemo(() => [...new Set(letters)], [letters]);
 
-  useEffect(() => {
-    startGame();
-  }, []);
-
-  useEffect(() => {
-    if (lives < 1) return setGameOver(true);
-  }, [lives]);
-
-  useEffect(() => {
-    checkWin(uniqueLetters, correctGuesses);
-  }, [correctGuesses, uniqueLetters]);
-
-  useEffect(() => {
-    if (gameOver) {
-      if (playerWin) setWon(prevWon => prevWon + 1);
-      setPlayed(prevPlayed => prevPlayed + 1);
-      setShowGameOverInfo(true);
-    }
-  }, [gameOver]);
-
-  const startGame = () => {
+  const startGame = useCallback(() => {
 
     setPlayerWin(false);
     setGameOver(false);
@@ -70,7 +50,29 @@ function App() {
 
     setShowGameOverInfo(false);
 
-  };
+  }, []);
+
+  useEffect(() => {
+    startGame();
+  }, [startGame]);
+
+  useEffect(() => {
+    if (lives < 1) return setGameOver(true);
+  }, [lives]);
+
+  useEffect(() => {
+    checkWin(uniqueLetters, correctGuesses);
+  }, [correctGuesses, uniqueLetters]);
+
+  useEffect(() => {
+    if (gameOver) {
+      if (playerWin) setWon(prevWon => prevWon + 1);
+      setPlayed(prevPlayed => prevPlayed + 1);
+      setShowGameOverInfo(true);
+    }
+  }, [gameOver, playerWin]);
+
+
 
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
