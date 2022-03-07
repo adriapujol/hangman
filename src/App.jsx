@@ -43,7 +43,6 @@ function App() {
     setLives(10);
 
     axios.request(axiosOptions).then(function (response) {
-      console.log(response.data[0].word);
       setWord(response.data[0].word.toLowerCase());
       setDefinition(response.data[0].definition);
     }).catch(function (error) {
