@@ -2,7 +2,7 @@ import React from 'react';
 import bearWin from '../img/bear_win.png';
 import bearLose from '../img/bear_lose.png';
 
-function GameOverInfo({ word, playerWin, startGame }) {
+function GameOverInfo({ word, definition, playerWin, startGame }) {
     return (
         <div className='modal-container'>
             <div className="modal">
@@ -15,6 +15,7 @@ function GameOverInfo({ word, playerWin, startGame }) {
                 <p>
                     The word was <span className={playerWin ? "succeed" : "failed"}>{word}</span>
                 </p>
+                {(definition !== "") && <p className='definition'>Definition: {definition}</p>}
                 <button className="btn-play shake" onClick={() => startGame()} >Play again</button>
             </div>
         </div>
