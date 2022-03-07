@@ -20,6 +20,7 @@ function App() {
   const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [word, setWord] = useState("words");
+  const [definition, setDefinition] = useState("");
   const [won, setWon] = useState(0);
   const [played, setPlayed] = useState(0);
   const [correctGuesses, setCorrectGuesses] = useState([]);
@@ -42,7 +43,9 @@ function App() {
     setLives(10);
 
     axios.request(axiosOptions).then(function (response) {
-      setWord(response.data);
+      console.log(response.data[0].word);
+      setWord(response.data[0].word.toLowerCase());
+      setDefinition(response.data[0].definition);
     }).catch(function (error) {
       let num = getRandomNumber(0, 21);
       setWord(words[num]);
@@ -104,7 +107,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      {showGameOverInfo && <GameOverInfo word={word} playerWin={playerWin} startGame={startGame} />}
+      {showGameOverInfo && <GameOverInfo word={word} definition={definition} playerWin={playerWin} startGame={startGame} />}
       {showSolve && <Solve setShowSolve={setShowSolve} word={word} setPlayerWin={setPlayerWin} setGameOver={setGameOver} />}
       <Navbar won={won} played={played} />
       <Game correctGuesses={correctGuesses} lives={lives} letters={letters} />
