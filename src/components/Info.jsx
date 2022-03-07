@@ -16,7 +16,7 @@ function Info({ setShowInfo }) {
 
                 </div>
                 <button className="btn-play shake" onClick={() => setShowInfo(false)} >Okay!</button>
-                <div className="credits">Design and coding by <a href="https://adriapujol.github.io/portfolio/" target="_blank">Adrià Pujol</a> </div>
+                <div className="credits">Design and coding by <a href="https://adriapujol.github.io/portfolio/" target="_blank" rel="noreferrer">Adrià Pujol</a> </div>
             </div>
         </div>
     )
