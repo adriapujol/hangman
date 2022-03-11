@@ -3,7 +3,7 @@ import Key from './Key';
 
 
 
-function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setShowSolve }) {
+function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setShowSolve, loading }) {
 
     const [keyBoardKeys, setKeyBoardKeys] = useState(
         {
@@ -14,7 +14,7 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setSho
     );
 
     useEffect(() => {
-        if (showSolve) return
+        if (showSolve || loading) return
         document.addEventListener("keypress", handlePress);
         return () => document.removeEventListener("keypress", handlePress);
     });
@@ -41,14 +41,14 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setSho
             <div className="row">
                 {keys1.map((k, index) => {
                     let classStyle = guesses.includes(k) ? `key used ${keyBoardKeys[k]}` : `key ${keyBoardKeys[k]}`;
-                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
+                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} loading={loading} />
                 })}
             </div>
             <div className="row">
                 <div className="blank half"></div>
                 {keys2.map((k, index) => {
                     let classStyle = guesses.includes(k) ? `key used ${keyBoardKeys[k]}` : `key ${keyBoardKeys[k]}`;
-                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} />
+                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} loading={loading} />
                 })}
                 <div className="blank half"></div>
             </div>
@@ -61,7 +61,7 @@ function Keyboard({ checkLetter, correctGuesses, wrongGuesses, showSolve, setSho
                     if (k === "enter" || k === "solve") {
                         classStyle = classStyle + " one-and-half";
                     }
-                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} setShowSolve={setShowSolve} />
+                    return <Key letter={k} checkLetter={checkLetter} classStyle={classStyle} key={index} setShowSolve={setShowSolve} loading={loading} />
                 })}
             </div>
 

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
-function Key({ letter, checkLetter, classStyle, setShowSolve }) {
+function Key({ letter, checkLetter, classStyle, setShowSolve, loading }) {
 
     const [clicked, setClicked] = useState(false);
 
     const handleClick = (e) => {
         e.preventDefault();
+        if (loading) return
         setClicked(true);
         checkLetter(e.target.value);
         setTimeout(() => setClicked(false), 200);
