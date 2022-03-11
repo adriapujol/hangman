@@ -8,6 +8,7 @@ import GameOverInfo from './components/GameOverInfo';
 import Solve from './components/Solve';
 import Game from './components/Game';
 import words from './words.json';
+import Loading from './components/Loading';
 
 
 
@@ -108,6 +109,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      {loading && <Loading />}
       {showGameOverInfo && <GameOverInfo word={word} definition={definition} playerWin={playerWin} startGame={startGame} />}
       {showSolve && <Solve setShowSolve={setShowSolve} word={word} setPlayerWin={setPlayerWin} setGameOver={setGameOver} />}
       <Navbar won={won} played={played} />

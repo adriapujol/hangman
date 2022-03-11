@@ -428,6 +428,17 @@
 
 }
 
+// Loading modal
+
+.loading {
+    color: $white;
+    transition: all 1s ease-in-out;
+    animation: smallToBig 0.5s ease;
+    animation-fill-mode: backwards;
+    font-size: 4rem;
+}
+
+
 .button-box {
     button:first-child {
         margin-right: 10px;
@@ -441,6 +452,14 @@
     }
 }
 
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 
 @keyframes letterClick {
