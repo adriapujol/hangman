@@ -15,11 +15,11 @@ import words from './words.json';
 
 function App() {
 
-
+  const [loading, setLoading] = useState(true);
   const [lives, setLives] = useState(10);
   const [playerWin, setPlayerWin] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [word, setWord] = useState("words");
+  const [word, setWord] = useState("word");
   const [definition, setDefinition] = useState("");
   const [won, setWon] = useState(0);
   const [played, setPlayed] = useState(0);
@@ -35,21 +35,23 @@ function App() {
   const uniqueLetters = useMemo(() => [...new Set(letters)], [letters]);
 
   const startGame = useCallback(() => {
+    setLoading(true);
+
+    axios.request(axiosOptions).then(function (response) {
+      setWord(response.data[0].word.toLowerCase());
+      setDefinition(response.data[0].definition);
+      setLoading(false);
+    }).catch(function (error) {
+      let num = getRandomNumber(0, 21);
+      setWord(words[num]);
+      setLoading(false);
+    });
 
     setPlayerWin(false);
     setGameOver(false);
     setWrongGuesses([]);
     setCorrectGuesses([]);
     setLives(10);
-
-    axios.request(axiosOptions).then(function (response) {
-      setWord(response.data[0].word.toLowerCase());
-      setDefinition(response.data[0].definition);
-    }).catch(function (error) {
-      let num = getRandomNumber(0, 21);
-      setWord(words[num]);
-    });
-
     setShowGameOverInfo(false);
 
   }, []);
@@ -110,7 +112,7 @@ function App() {
       {showSolve && <Solve setShowSolve={setShowSolve} word={word} setPlayerWin={setPlayerWin} setGameOver={setGameOver} />}
       <Navbar won={won} played={played} />
       <Game correctGuesses={correctGuesses} lives={lives} letters={letters} />
-      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} showSolve={showSolve} setShowSolve={setShowSolve} />
+      <Keyboard checkLetter={checkLetter} correctGuesses={correctGuesses} wrongGuesses={wrongGuesses} showSolve={showSolve} setShowSolve={setShowSolve} loading={loading} />
     </div>
   );
 }
